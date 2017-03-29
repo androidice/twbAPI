@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 
-export default class Main
+class Main
 extends React.Component {
-
   render(){
     return (
       <div className="container-fluid">
@@ -15,3 +15,13 @@ extends React.Component {
 Main.propTypes = {
   children: PropTypes.object.isRequired
 };
+
+
+function mapStateToProps(state, ownProps){
+  debugger;
+  return {
+    token: state.token
+  };
+}
+
+export default connect(mapStateToProps)(Main);
