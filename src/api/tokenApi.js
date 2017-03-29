@@ -16,8 +16,9 @@ export function getToken() {
           'Authorization': 'Basic '+ credentails,
           'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
         },
-        data: JSON.stringify(
-          'grant_type': 'client_credentials'
+        data: JSON.stringify({
+            'grant_type': 'client_credentials'
+          }
         )
       }).then((authToken)=>{
         debugger;
