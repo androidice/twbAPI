@@ -17,9 +17,16 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
+app.get('/getAccessToken', function(req, res){
+  console.log('getAccessToken');
+  res.status(200).send("sample data")
+  res.end();
+});
+
 app.get('*', function(req, res) {
   res.sendFile(path.join( __dirname, '../src/index.html'));
 });
+
 
 app.listen(port, function(err) {
   if (err) {

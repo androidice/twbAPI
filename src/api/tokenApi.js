@@ -1,32 +1,16 @@
 import settings from '../settings';
+import 'es6-promise';
 import fetch from 'isomorphic-fetch';
 
-export function encodeCredentials(){
-  return btoa(settings.CONSUMER_KEY+ ':'+ settings.SECRET_KEY);
-}
-
-export function getToken() {
-  let credentails = encodeCredentials();
+export function getAccessToken(){
   return new Promise((resolve, reject)=>{
-    debugger;
-    setTimeout(()=>{
-      fetch('https://api.twitter.com/oauth2/token',{
-        method:'POST',
-        headers: {
-          'Authorization': 'Basic '+ credentails,
-          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-        },
-        data: JSON.stringify({
-            'grant_type': 'client_credentials'
-          }
-        )
-      }).then((authToken)=>{
-        debugger;
-        resolve(credentails);
-      },(error)=>{
-        debugger;
-        reject (error);
-      });
-    },0);
+    fetch(settings.host +'/getAccessToken',{
+      method:'GET'
+    }).then((accessToken)=>{
+        console.log(accessToken);
+        resolve(accessToken);
+    }, (error)=>{
+        reject(error);
+    });
   });
 }
