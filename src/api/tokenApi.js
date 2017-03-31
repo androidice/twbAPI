@@ -1,6 +1,5 @@
 import settings from '../settings';
-import 'es6-promise';
-import fetch from 'isomorphic-fetch';
+import 'isomorphic-fetch';
 
 export function getAccessToken(){
   return new Promise((resolve, reject)=>{

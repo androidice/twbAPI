@@ -3,6 +3,7 @@ import webpack from 'webpack';
 import path from 'path';
 import config from '../webpack.config.dev';
 import open from 'open';
+import exposeApi from './api';
 
 /* eslint-disable no-console */
 
@@ -17,11 +18,7 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
-app.get('/getAccessToken', function(req, res){
-  console.log('getAccessToken');
-  res.status(200).send("sample data")
-  res.end();
-});
+exposeApi(app);
 
 app.get('*', function(req, res) {
   res.sendFile(path.join( __dirname, '../src/index.html'));
