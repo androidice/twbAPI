@@ -7,7 +7,7 @@ export function getTokenSuccess(accessToken){
 }
 
 export function getTweetsSuccess(tweets) {
-  return {type: types.GET_ACCESS_TOKEN };
+  return {type: types.GET_TWEETS_SUCCESS, tweets};
 }
 
 export function getTweets(searchText = '@twitterapi') {
@@ -16,7 +16,7 @@ export function getTweets(searchText = '@twitterapi') {
    if(_currentState){
      let accessToken = _currentState.accessToken;
      return tokenApi.getTweets(accessToken, searchText).then((result)=>{
-       console.log('result', result);
+       dispatch(getTweetsSuccess(result.tweets));
      },(error)=>{
        throw(error);
      });

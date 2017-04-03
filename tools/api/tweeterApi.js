@@ -25,7 +25,6 @@ function getTweets(app){
     let accessToken = req.body.accessToken || '';
     let searchText = req.body.searchText || '';
     let url = 'https://api.twitter.com/1.1/search/tweets.json?q={searchKey}&result_type=recent&lang=en'.replace('{searchKey}',urlencode(searchText));
-
     request({
       method: 'GET',
       url,

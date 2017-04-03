@@ -1,4 +1,5 @@
 import React from 'react';
+import Feeds from './Components/Feeds';
 
 export default class Home
   extends React.Component{
@@ -8,8 +9,13 @@ export default class Home
 
   render(){
     return(
-      <div className="jumbotron">
-        <h1>Tweeter Based Application</h1>
+      <div>
+        <div className="jumbotron">
+          <h1>Tweeter Based Application</h1>
+        </div>
+        <div>
+          <Feeds/>
+        </div>
       </div>
     );
   }

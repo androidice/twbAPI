@@ -2,10 +2,10 @@ import * as types from '../actions/actionTypes';
 import initialState from './initialState';
 
 
-export default function tokenReducer(state = initialState.access_token, action){
+export default function tweetsReducer(state = initialState.tweets, action){
   switch (action.type){
-    case types.GET_ACCESS_TOKEN:
-      return action.accessToken;
+    case types.GET_TWEETS_SUCCESS:
+      return action.tweets;
     default:
       return state;
   }
