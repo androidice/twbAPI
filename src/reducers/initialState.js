@@ -1,3 +1,3 @@
 export default {
- token: ''
+ access_token: ''
 };

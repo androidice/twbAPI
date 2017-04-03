@@ -12,11 +12,16 @@ import routes from './routes';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 
 const store = configureStore();
-store.dispatch(tokenActions.getToken());
+store.dispatch(tokenActions.getAccessToken());
+store.subscribe(()=>{
+  store.dispatch(tokenActions.getTweets());
+});
+
 
 render(
   <Provider store={store}>
     <Router history={browserHistory} routes={routes}/>
   </Provider>,
+
   document.getElementById('app')
 );

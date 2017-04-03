@@ -18,9 +18,8 @@ Main.propTypes = {
 
 
 function mapStateToProps(state, ownProps){
-  debugger;
   return {
-    token: state.token
+    access_token: state.accessToken
   };
 }
 

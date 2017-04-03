@@ -4,6 +4,7 @@ import path from 'path';
 import config from '../webpack.config.dev';
 import open from 'open';
 import exposeApi from './api';
+import bodyParser from 'body-parser';
 
 /* eslint-disable no-console */
 
@@ -17,6 +18,12 @@ app.use(require('webpack-dev-middleware')(compiler, {
 }));
 
 app.use(require('webpack-hot-middleware')(compiler));
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// parse application/json
+app.use(bodyParser.json());
 
 exposeApi(app);
 
