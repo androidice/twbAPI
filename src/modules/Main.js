@@ -15,7 +15,8 @@ extends React.Component {
 }
 
 Main.propTypes = {
-  children: PropTypes.object.isRequired
+  children: PropTypes.object.isRequired,
+  access_token: PropTypes.string.isRequired
 };
 
 

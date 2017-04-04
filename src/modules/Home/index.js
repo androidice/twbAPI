@@ -14,6 +14,9 @@ export default class Home
           <h1>Tweeter Based Application</h1>
         </div>
         <div>
+          <input type="text" placeholder="Search"/>
+        </div>
+        <div>
           <Feeds/>
         </div>
       </div>

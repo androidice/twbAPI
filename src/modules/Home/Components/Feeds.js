@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 class Feeds extends React.Component {
   constructor(props, context){
@@ -7,27 +8,49 @@ class Feeds extends React.Component {
   }
 
   mapFeed(tweet){
-    return (<ul>
-      <li key={tweet['id']} id={tweet['id']}>
-        <span className="user" id={tweet['user']['id']}>
+    return (
+      <a className="list-group-item list-group-item-action flex-column align-items-start"
+         key={tweet['id_str']} id={tweet['id_str']}>
+        <div className="d-flex w-100 justify-content-between">
           <div>
-          profile: <img src={tweet['user']['profile_image_url']} alt=""/> <br/>
-          name: {tweet['user']['name']} <br/>
-          Date Created: {tweet['user']['created_at']}
+            <a href={tweet['user']['url']} target="_blank">
+              <img src={tweet['user']['profile_image_url']} alt=""/>
+            </a>
           </div>
-        </span>
-      </li>
-    </ul>);
+          <div>
+            {tweet['user']['name']}
+          </div>
+          <div>
+            {tweet['user']['description']}
+          </div>
+          <div>
+            {tweet['text']}
+          </div>
+          <div>
+            {moment(new Date(tweet['user']['created_at'])).format('DD MMM YYYY h:mm a')}
+          </div>
+          <div>
+           FOLLOWERS  {tweet['user']['followers_count']}
+          </div>
+          <div>
+            FOLLING {tweet['user']['friends_count']}
+          </div>
+        </div>
+      </a>);
   }
 
   render(){
     return (
-      <ul>
+      <div className="list-group">
         {this.props.tweets.map((tweet)=> this.mapFeed(tweet))}
-      </ul>
+      </div>
     );
-  };
+  }
 }
+
+Feeds.propTypes = {
+  tweets: PropTypes.array.isRequired
+};
 
 
 function mapStateToProps(state, ownProps){
@@ -36,4 +59,4 @@ function mapStateToProps(state, ownProps){
   };
 }
 
-export default connect(mapStateToProps)(Feeds)
+export default connect(mapStateToProps)(Feeds);
