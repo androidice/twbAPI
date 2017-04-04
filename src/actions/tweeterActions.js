@@ -15,6 +15,7 @@ export function getTweets(searchText = '@twitterapi') {
    let _currentState = getState();
    if(_currentState){
      let accessToken = _currentState.accessToken;
+     if(searchText.trim() === '') return;
      return tweeterApi.getTweets(accessToken, searchText).then((result)=>{
        dispatch(getTweetsSuccess(result.tweets));
      },(error)=>{

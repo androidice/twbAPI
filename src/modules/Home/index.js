@@ -10,8 +10,8 @@ export default class Home
   render(){
     return(
       <div>
-        <div className="jumbotron">
-          <h1>Tweeter Based Application</h1>
+        <div className="page-header">
+          <h1>Tweeter Based API</h1>
         </div>
         <Feeds/>
       </div>
