@@ -5,13 +5,10 @@ import config from '../webpack.config.dev';
 import open from 'open';
 import exposeApi from './api';
 import bodyParser from 'body-parser';
-import apicache from 'apicache';
-
 /* eslint-disable no-console */
 
 const port = 3000;
 const app = express();
-const cache = apicache.middleware;
 const compiler = webpack(config);
 
 app.use(require('webpack-dev-middleware')(compiler, {
@@ -27,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
-app.use(cache('5 minutes')); // cache all routes for 5 minutes
+//app.use(cache('5 minutes')); // cache all routes for 5 minutes
 
 exposeApi(app);
 

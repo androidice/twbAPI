@@ -13,12 +13,7 @@ export default class Home
         <div className="jumbotron">
           <h1>Tweeter Based Application</h1>
         </div>
-        <div>
-          <input type="text" placeholder="Search"/>
-        </div>
-        <div>
-          <Feeds/>
-        </div>
+        <Feeds/>
       </div>
     );
   }

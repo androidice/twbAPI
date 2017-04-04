@@ -1,5 +1,5 @@
 import * as types from './actionTypes';
-import * as tokenApi from '../api/tokenApi';
+import * as tweeterApi from '../api/tweeterApi';
 
 
 export function getTokenSuccess(accessToken){
@@ -15,7 +15,7 @@ export function getTweets(searchText = '@twitterapi') {
    let _currentState = getState();
    if(_currentState){
      let accessToken = _currentState.accessToken;
-     return tokenApi.getTweets(accessToken, searchText).then((result)=>{
+     return tweeterApi.getTweets(accessToken, searchText).then((result)=>{
        dispatch(getTweetsSuccess(result.tweets));
      },(error)=>{
        throw(error);
@@ -26,7 +26,7 @@ export function getTweets(searchText = '@twitterapi') {
 
 export function getAccessToken(){
   return function(dispatch){
-    return tokenApi.getAccessToken().then((result)=>{
+    return tweeterApi.getAccessToken().then((result)=>{
       dispatch(getTokenSuccess(result.access_token));
     },(error)=>{
       throw(error);
