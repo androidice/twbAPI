@@ -12,7 +12,8 @@ class Feeds extends React.Component {
 
     this.state = {
       searchText: this.props.searchText,
-      tweets: this.props.tweets
+      tweets: this.props.tweets,
+      searching: false
     };
     this.onChange = this.onChange.bind(this);
     this.onSearch = this.onSearch.bind(this);
@@ -22,6 +23,10 @@ class Feeds extends React.Component {
     this.setState({tweets: Object.assign([], nextProps.tweets)});
   }
 
+  componentDidMount(){
+    this.setState({searching: false});
+  }
+
   onChange(event){
     let searchText = event.target.value;
     return this.setState({searchText: searchText});
@@ -29,21 +34,28 @@ class Feeds extends React.Component {
 
   onSearch(){
     event.preventDefault();
+    this.setState({searching: true});
     this.props.actions.getTweets(this.state.searchText);
   }
 
   render(){
+    let feedListElement = null;
+    if(this.state.searching && this.state.tweets.length === 0){
+      feedListElement = <h1>No Record Found</h1>;
+    }else{
+      feedListElement = <FieldList
+        tweets={this.state.tweets}
+      />
+    }
     return (
       <div className="row">
         <SearchField
           placeholder="Search here"
-          value={this.state.searchText}
+         value={this.state.searchText}
           onChange={this.onChange}
-          onSearch={this.onSearch}/>
+           onSearch={this.onSearch}/>
         <div className="clearfix"></div>
-        <FieldList
-          tweets={this.state.tweets}
-        />
+        {feedListElement}
       </div>
     );
   }
