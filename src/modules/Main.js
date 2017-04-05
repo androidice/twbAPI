@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { getTweets } from '../actions/tweeterActions';
+import LoadingBar from 'react-redux-loading-bar';
 
 class Main
 extends React.Component {
@@ -17,6 +18,7 @@ extends React.Component {
   render(){
     return (
       <div className="container-fluid">
+        <LoadingBar />
         {this.props.children}
       </div>
     );
